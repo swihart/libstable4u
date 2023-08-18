@@ -1,21 +1,21 @@
 /* stable/stable_integration.c
- * 
+ *
  * Functions to perform numerical integration used when calculating
  * the PDF and CDF of alpha-stable distributions. Based on GSL
  * numerical quadrature methods.
  *
  * Copyright (C) 2013. Javier Royuela del Val
  *                     Federico Simmross Wattenberg
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; version 3 of the License.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; If not, see <http://www.gnu.org/licenses/>.
  *
@@ -24,7 +24,7 @@
  *  E.T.S.I. Telecomunicación
  *  Universidad de Valladolid
  *  Paseo de Belén 15, 47002 Valladolid, Spain.
- *  jroyval@lpi.tel.uva.es    
+ *  jroyval@lpi.tel.uva.es
  */
 #include "stable.h"
 #include "stable_integration.h"
@@ -35,36 +35,36 @@
 #include <stdio.h>
 #include "methods.h"
 
-int stable_integration_METHODNAME(unsigned short method, char* name)
-{
-  switch (method)
-    {
-      case STABLE_QAG1:
-        return sprintf(name,
-        "QAG2: Adaptative 15 point Gauss-Kronrod rule");
-      case STABLE_QAG2:
-        return sprintf(name,
-        "QAG2: Adaptative 21 point Gauss-Kronrod rule");
-      case STABLE_QAG5:
-        return sprintf(name,
-        "QAG2: Adaptative 51 point Gauss-Kronrod rule");
-      case STABLE_QUADSTEP:
-        return sprintf(name,
-        "QUADSTEP: Adaptative Bisection");
-      case STABLE_QROMBPOL:
-        return sprintf(name,
-        "QROMBPOL: Romberg with Polinomial Extrapolation");
-      case STABLE_QROMBRAT:
-        return sprintf(name,
-        "ROMBRAT: Romberg with Rational Extrapolation");
-      case STABLE_QNG:
-	return sprintf(name,
-        "GSL_QNG: Non-adaptative Gauss-Kronrod rule 10, 21, 43 and 87 points");
-    }
-
-  sprintf(name,"Invalid method");
-  return -1;
-}
+// int stable_integration_METHODNAME(unsigned short method, char* name)
+// {
+//   switch (method)
+//     {
+//       case STABLE_QAG1:
+//         return sprintf(name,
+//         "QAG2: Adaptative 15 point Gauss-Kronrod rule");
+//       case STABLE_QAG2:
+//         return sprintf(name,
+//         "QAG2: Adaptative 21 point Gauss-Kronrod rule");
+//       case STABLE_QAG5:
+//         return sprintf(name,
+//         "QAG2: Adaptative 51 point Gauss-Kronrod rule");
+//       case STABLE_QUADSTEP:
+//         return sprintf(name,
+//         "QUADSTEP: Adaptative Bisection");
+//       case STABLE_QROMBPOL:
+//         return sprintf(name,
+//         "QROMBPOL: Romberg with Polinomial Extrapolation");
+//       case STABLE_QROMBRAT:
+//         return sprintf(name,
+//         "ROMBRAT: Romberg with Rational Extrapolation");
+//       case STABLE_QNG:
+// 	return sprintf(name,
+//         "GSL_QNG: Non-adaptative Gauss-Kronrod rule 10, 21, 43 and 87 points");
+//     }
+//
+//   sprintf(name,"Invalid method");
+//   return -1;
+// }
 
 void
 stable_integration_QAG1(StableDist *dist,double(function)(double, void*),
@@ -165,7 +165,7 @@ stable_integration_QNG(StableDist *dist,double(function)(double, void*),
           if(*abserr<epsabs || *abserr<epsrel*fabs(*result))
            {
             printf(" %d ! ",warn);
-            break; 
+            break;
            }
         }
     }

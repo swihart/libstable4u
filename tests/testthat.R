@@ -1,4 +1,4 @@
 library(testthat)
-library(libstableR)
+library(libstable4u)
 
-test_check("libstableR")
+test_check("libstable4u")

@@ -37,7 +37,7 @@
 /*                             Public part                                    */
 /*----------------------------------------------------------------------------*/
 
-unsigned int stable_get_THREADS() { return THREADS; }
+unsigned int stable_get_THREADS(void) { return THREADS; }
 
 //TODO: Get number of cores in differents platforms following C99 standar
 #ifdef __WIN32
@@ -64,20 +64,20 @@ void stable_set_THREADS(unsigned int value) {
 #endif
 
 
-int stable_get_METHOD1() { return METHOD1; }
+int stable_get_METHOD1(void) { return METHOD1; }
 void stable_set_METHOD1(int value) { METHOD1 = value; }
-int stable_get_METHOD2() { return METHOD2; }
+int stable_get_METHOD2(void) { return METHOD2; }
 void stable_set_METHOD2(int value) { METHOD2 = value; }
-int stable_get_METHOD3() { return METHOD3; }
+int stable_get_METHOD3(void) { return METHOD3; }
 void stable_set_METHOD3(int value) { METHOD3 = value; }
 
-unsigned int stable_get_IT_MAX() { return IT_MAX; }
+unsigned int stable_get_IT_MAX(void) { return IT_MAX; }
 void stable_set_IT_MAX(unsigned int value) { IT_MAX = value;}
 
-unsigned int stable_get_INV_MAXITER() { return INV_MAXITER; }
+unsigned int stable_get_INV_MAXITER(void) { return INV_MAXITER; }
 void stable_set_INV_MAXITER(unsigned int value) { INV_MAXITER = value;}
 
-double stable_get_relTOL() { return relTOL; }
+double stable_get_relTOL(void) { return relTOL; }
 void stable_set_relTOL(double value) {
 /* Switch between integration methods according to relTOL */
   relTOL = value;
@@ -98,7 +98,7 @@ void stable_set_relTOL(double value) {
   }
 }
 
-double stable_get_absTOL() { return absTOL; }
+double stable_get_absTOL(void) { return absTOL; }
 void stable_set_absTOL(double value)
 {
   absTOL = value;
@@ -108,24 +108,24 @@ void stable_set_absTOL(double value)
 /* Parameter thresholds */
 
 /* When abs(alpha - 1)<ALPHA_TH alpha is set to 1 */
-double stable_get_ALPHA_TH() { return ALPHA_TH; }
+double stable_get_ALPHA_TH(void) { return ALPHA_TH; }
 void stable_set_ALPHA_TH(double value) { ALPHA_TH = value; }
 
 /* When 1-abs(beta)<BETA_TH beta is set to sign(beta)*1.0 */
 /* When alpha = 1 and abs(beta)<BETA_TH beta is set to 0.0*/
-double stable_get_BETA_TH() { return BETA_TH; }
+double stable_get_BETA_TH(void) { return BETA_TH; }
 void stable_set_BETA_TH(double value) { BETA_TH = value; }
 
 /* When abs(x-xxi)<XXI_TH x is set to XXI */
-double stable_get_XXI_TH() { return XXI_TH; }
+double stable_get_XXI_TH(void) { return XXI_TH; }
 void stable_set_XXI_TH(double value) { XXI_TH = value; }
 
 /* When theta get closer than THETA_TH to integration interval limits theta is set to the limit value */
-double stable_get_THETA_TH() { return THETA_TH; }
+double stable_get_THETA_TH(void) { return THETA_TH; }
 void stable_set_THETA_TH(double value) { THETA_TH = value; }
 
 /* Debug purposes*/
-FILE * stable_get_FINTEG() { return FINTEG; }
+FILE * stable_get_FINTEG(void) { return FINTEG; }
 FILE * stable_set_FINTEG(char *name)
 {
   FINTEG = fopen(name,"wt");
@@ -133,7 +133,7 @@ FILE * stable_set_FINTEG(char *name)
 }
 
 /* Log-file configuration */
-FILE * stable_get_FLOG() { return FLOG; }
+FILE * stable_get_FLOG(void) { return FLOG; }
 FILE * stable_set_FLOG(char * name)
 {
   FLOG = fopen(name,"wt");

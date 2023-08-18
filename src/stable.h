@@ -179,46 +179,46 @@ typedef struct StableDistStruct StableDist;
 /******************************************************************************/
 /*        Auxiliary functions                                                 */
 /******************************************************************************/
-unsigned int stable_get_THREADS();
+unsigned int stable_get_THREADS(void);
 void   stable_set_THREADS(unsigned int threads);
 
-unsigned int stable_get_IT_MAX();
+unsigned int stable_get_IT_MAX(void);
 void   stable_set_IT_MAX(unsigned int itmax);
 
-unsigned int stable_get_INV_MAXITER();
+unsigned int stable_get_INV_MAXITER(void);
 void   stable_set_INV_MAXITER(unsigned int invmaxiter);
 
-int stable_get_METHOD1();
+int stable_get_METHOD1(void);
 void stable_set_METHOD1(int method);
 
-int stable_get_METHOD2();
+int stable_get_METHOD2(void);
 void stable_set_METHOD2(int method);
 
-int stable_get_METHOD3();
+int stable_get_METHOD3(void);
 void stable_set_METHOD3(int method);
 
-double stable_get_relTOL();
+double stable_get_relTOL(void);
 void   stable_set_relTOL(double reltol);
 
-double stable_get_absTOL();
+double stable_get_absTOL(void);
 void   stable_set_absTOL(double abstol);
 
-double stable_get_ALPHA_TH();
+double stable_get_ALPHA_TH(void);
 void   stable_set_ALPHA_TH(double alphath);
 
-double stable_get_BETA_TH();
+double stable_get_BETA_TH(void);
 void   stable_set_BETA_TH(double betath);
 
-double stable_get_XXI_TH();
+double stable_get_XXI_TH(void);
 void   stable_set_XXI_TH(double xxith);
 
-double stable_get_THETA_TH();
+double stable_get_THETA_TH(void);
 void   stable_set_THETA_TH(double thetath);
 
-FILE * stable_get_FINTEG();
+FILE * stable_get_FINTEG(void);
 FILE * stable_set_FINTEG(char * filename);
 
-FILE * stable_get_FLOG();
+FILE * stable_get_FLOG(void);
 FILE * stable_set_FLOG(char * filename);
 
 

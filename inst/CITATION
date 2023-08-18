@@ -14,7 +14,7 @@ bibentry(bibtype = "Article",
   pages        = "1--25",
   doi          = "10.18637/jss.v078.i01",
 
-  header       = "To cite libstable/libstableR/v78i01-replication.tar.gz in publications use:",
+  header       = "To cite libstable/libstable4u/v78i01-replication.tar.gz in publications use:",
   textVersion  =
   paste("Javier Royuela-del-Val, Federico Simmross-Wattenberg, Carlos Alberola-Lopez (2017).",
         "libstable: Fast, Parallel, and High-Precision Computation of $\alpha$-Stable Distributions in R, C/C++, and MATLAB.",

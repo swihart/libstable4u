@@ -33,12 +33,12 @@
 #' plot(x, pdf, type = "l")
 #' @export
 stable_pdf <- function(x, pars, parametrization = 0L, tol = 1e-12) {
-    .Call(`_libstableR_stable_pdf`, x, pars, parametrization, tol)
+    .Call(`_libstable4u_stable_pdf`, x, pars, parametrization, tol)
 }
 
 #' @export
 stable_cdf <- function(x, pars, parametrization = 0L, tol = 1e-12) {
-    .Call(`_libstableR_stable_cdf`, x, pars, parametrization, tol)
+    .Call(`_libstable4u_stable_cdf`, x, pars, parametrization, tol)
 }
 
 #' @md
@@ -62,7 +62,7 @@ stable_cdf <- function(x, pars, parametrization = 0L, tol = 1e-12) {
 #' @keywords distribution
 #' @export
 stable_q <- function(p, pars, parametrization = 0L, tol = 1e-12) {
-    .Call(`_libstableR_stable_q`, p, pars, parametrization, tol)
+    .Call(`_libstable4u_stable_q`, p, pars, parametrization, tol)
 }
 
 #' @md
@@ -90,7 +90,7 @@ stable_q <- function(p, pars, parametrization = 0L, tol = 1e-12) {
 #' hist(rnd)
 #' @export
 stable_rnd <- function(N, pars, parametrization = 0L) {
-    .Call(`_libstableR_stable_rnd`, N, pars, parametrization)
+    .Call(`_libstable4u_stable_rnd`, N, pars, parametrization)
 }
 
 #' @md
@@ -119,8 +119,10 @@ stable_rnd <- function(N, pars, parametrization = 0L) {
 #' # Set alpha, beta, sigma and mu stable parameters in a vector
 #' pars <- c(1.5, 0.9, 1, 0)
 #'
-#' # Generate 300 random values
-#' rnd <- stable_rnd(300, pars)
+#' # Generate random values
+#' set.seed(1)
+#' rnd <- stable_rnd(100, pars)
+#' head(rnd)
 #'
 #' # Estimate the parameters of the skew stable distribution given
 #' # the generated sample:
@@ -133,13 +135,13 @@ stable_rnd <- function(N, pars, parametrization = 0L) {
 #' pars_est_K <- stable_fit_koutrouvelis(rnd, pars_init)
 #'
 #' # Using maximum likelihood estimator:
-#' # pars_est_ML <- stable_fit_mle(rnd, pars_est_K)
+#' pars_est_ML <- stable_fit_mle(rnd, pars_est_K)
 #'
 #' # Using modified maximum likelihood estimator (see [1]):
-#' # pars_est_ML2 <- stable_fit_mle2d(rnd, pars_est_K)
+#' pars_est_ML2 <- stable_fit_mle2d(rnd, pars_est_K)
 #' @export
 stable_fit_init <- function(rnd, parametrization = 0L) {
-    .Call(`_libstableR_stable_fit_init`, rnd, parametrization)
+    .Call(`_libstable4u_stable_fit_init`, rnd, parametrization)
 }
 
 #' @md
@@ -151,16 +153,16 @@ stable_fit_init <- function(rnd, parametrization = 0L) {
 #' * mu: location parameter, with mu real.
 #' @export
 stable_fit_koutrouvelis <- function(rnd, pars_init = as.numeric( c()), parametrization = 0L) {
-    .Call(`_libstableR_stable_fit_koutrouvelis`, rnd, pars_init, parametrization)
+    .Call(`_libstable4u_stable_fit_koutrouvelis`, rnd, pars_init, parametrization)
 }
 
 #' @export
 stable_fit_mle <- function(rnd, pars_init = as.numeric( c()), parametrization = 0L) {
-    .Call(`_libstableR_stable_fit_mle`, rnd, pars_init, parametrization)
+    .Call(`_libstable4u_stable_fit_mle`, rnd, pars_init, parametrization)
 }
 
 #' @export
 stable_fit_mle2d <- function(rnd, pars_init = as.numeric( c()), parametrization = 0L) {
-    .Call(`_libstableR_stable_fit_mle2d`, rnd, pars_init, parametrization)
+    .Call(`_libstable4u_stable_fit_mle2d`, rnd, pars_init, parametrization)
 }
 

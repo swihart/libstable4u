@@ -10,8 +10,7 @@
 \usage{
 stable_fit_init(rnd, parametrization = 0L)
 
-stable_fit_koutrouvelis(rnd, pars_init = as.numeric(c()),
-  parametrization = 0L)
+stable_fit_koutrouvelis(rnd, pars_init = as.numeric(c()), parametrization = 0L)
 }
 \arguments{
 \item{rnd}{Random sample}
@@ -44,8 +43,10 @@ A set of functions are provided that perform the parameter estimation of skew st
 # Set alpha, beta, sigma and mu stable parameters in a vector
 pars <- c(1.5, 0.9, 1, 0)
 
-# Generate 300 random values
-rnd <- stable_rnd(300, pars)
+# Generate random values
+set.seed(1)
+rnd <- stable_rnd(100, pars)
+head(rnd)
 
 # Estimate the parameters of the skew stable distribution given
 # the generated sample:
@@ -58,10 +59,10 @@ pars_init <- stable_fit_init(rnd)
 pars_est_K <- stable_fit_koutrouvelis(rnd, pars_init)
 
 # Using maximum likelihood estimator:
-# pars_est_ML <- stable_fit_mle(rnd, pars_est_K)
+pars_est_ML <- stable_fit_mle(rnd, pars_est_K)
 
 # Using modified maximum likelihood estimator (see [1]):
-# pars_est_ML2 <- stable_fit_mle2d(rnd, pars_est_K)
+pars_est_ML2 <- stable_fit_mle2d(rnd, pars_est_K)
 }
 \references{
 \itemize{

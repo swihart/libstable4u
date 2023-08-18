@@ -6,9 +6,14 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // stable_pdf
 NumericVector stable_pdf(NumericVector x, NumericVector pars, int parametrization, double tol);
-RcppExport SEXP _libstableR_stable_pdf(SEXP xSEXP, SEXP parsSEXP, SEXP parametrizationSEXP, SEXP tolSEXP) {
+RcppExport SEXP _libstable4u_stable_pdf(SEXP xSEXP, SEXP parsSEXP, SEXP parametrizationSEXP, SEXP tolSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -22,7 +27,7 @@ END_RCPP
 }
 // stable_cdf
 NumericVector stable_cdf(NumericVector x, NumericVector pars, int parametrization, double tol);
-RcppExport SEXP _libstableR_stable_cdf(SEXP xSEXP, SEXP parsSEXP, SEXP parametrizationSEXP, SEXP tolSEXP) {
+RcppExport SEXP _libstable4u_stable_cdf(SEXP xSEXP, SEXP parsSEXP, SEXP parametrizationSEXP, SEXP tolSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -36,7 +41,7 @@ END_RCPP
 }
 // stable_q
 NumericVector stable_q(NumericVector p, NumericVector pars, int parametrization, double tol);
-RcppExport SEXP _libstableR_stable_q(SEXP pSEXP, SEXP parsSEXP, SEXP parametrizationSEXP, SEXP tolSEXP) {
+RcppExport SEXP _libstable4u_stable_q(SEXP pSEXP, SEXP parsSEXP, SEXP parametrizationSEXP, SEXP tolSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -50,7 +55,7 @@ END_RCPP
 }
 // stable_rnd
 NumericVector stable_rnd(int N, NumericVector pars, int parametrization);
-RcppExport SEXP _libstableR_stable_rnd(SEXP NSEXP, SEXP parsSEXP, SEXP parametrizationSEXP) {
+RcppExport SEXP _libstable4u_stable_rnd(SEXP NSEXP, SEXP parsSEXP, SEXP parametrizationSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -63,7 +68,7 @@ END_RCPP
 }
 // stable_fit_init
 NumericVector stable_fit_init(NumericVector rnd, int parametrization);
-RcppExport SEXP _libstableR_stable_fit_init(SEXP rndSEXP, SEXP parametrizationSEXP) {
+RcppExport SEXP _libstable4u_stable_fit_init(SEXP rndSEXP, SEXP parametrizationSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -75,7 +80,7 @@ END_RCPP
 }
 // stable_fit_koutrouvelis
 NumericVector stable_fit_koutrouvelis(NumericVector rnd, NumericVector pars_init, int parametrization);
-RcppExport SEXP _libstableR_stable_fit_koutrouvelis(SEXP rndSEXP, SEXP pars_initSEXP, SEXP parametrizationSEXP) {
+RcppExport SEXP _libstable4u_stable_fit_koutrouvelis(SEXP rndSEXP, SEXP pars_initSEXP, SEXP parametrizationSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -88,7 +93,7 @@ END_RCPP
 }
 // stable_fit_mle
 NumericVector stable_fit_mle(NumericVector rnd, NumericVector pars_init, int parametrization);
-RcppExport SEXP _libstableR_stable_fit_mle(SEXP rndSEXP, SEXP pars_initSEXP, SEXP parametrizationSEXP) {
+RcppExport SEXP _libstable4u_stable_fit_mle(SEXP rndSEXP, SEXP pars_initSEXP, SEXP parametrizationSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -101,7 +106,7 @@ END_RCPP
 }
 // stable_fit_mle2d
 NumericVector stable_fit_mle2d(NumericVector rnd, NumericVector pars_init, int parametrization);
-RcppExport SEXP _libstableR_stable_fit_mle2d(SEXP rndSEXP, SEXP pars_initSEXP, SEXP parametrizationSEXP) {
+RcppExport SEXP _libstable4u_stable_fit_mle2d(SEXP rndSEXP, SEXP pars_initSEXP, SEXP parametrizationSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -114,18 +119,18 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_libstableR_stable_pdf", (DL_FUNC) &_libstableR_stable_pdf, 4},
-    {"_libstableR_stable_cdf", (DL_FUNC) &_libstableR_stable_cdf, 4},
-    {"_libstableR_stable_q", (DL_FUNC) &_libstableR_stable_q, 4},
-    {"_libstableR_stable_rnd", (DL_FUNC) &_libstableR_stable_rnd, 3},
-    {"_libstableR_stable_fit_init", (DL_FUNC) &_libstableR_stable_fit_init, 2},
-    {"_libstableR_stable_fit_koutrouvelis", (DL_FUNC) &_libstableR_stable_fit_koutrouvelis, 3},
-    {"_libstableR_stable_fit_mle", (DL_FUNC) &_libstableR_stable_fit_mle, 3},
-    {"_libstableR_stable_fit_mle2d", (DL_FUNC) &_libstableR_stable_fit_mle2d, 3},
+    {"_libstable4u_stable_pdf", (DL_FUNC) &_libstable4u_stable_pdf, 4},
+    {"_libstable4u_stable_cdf", (DL_FUNC) &_libstable4u_stable_cdf, 4},
+    {"_libstable4u_stable_q", (DL_FUNC) &_libstable4u_stable_q, 4},
+    {"_libstable4u_stable_rnd", (DL_FUNC) &_libstable4u_stable_rnd, 3},
+    {"_libstable4u_stable_fit_init", (DL_FUNC) &_libstable4u_stable_fit_init, 2},
+    {"_libstable4u_stable_fit_koutrouvelis", (DL_FUNC) &_libstable4u_stable_fit_koutrouvelis, 3},
+    {"_libstable4u_stable_fit_mle", (DL_FUNC) &_libstable4u_stable_fit_mle, 3},
+    {"_libstable4u_stable_fit_mle2d", (DL_FUNC) &_libstable4u_stable_fit_mle2d, 3},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_libstableR(DllInfo *dll) {
+RcppExport void R_init_libstable4u(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }
