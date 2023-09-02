@@ -23,7 +23,6 @@
 #' * \[3] McCulloch JH (1986). Simple Consistent Estimators of Stable Distribution Parameters. Communications in Statistics - Simulation and Computation, 15(4), 1109-1136. doi:10.1080/03610918608812563
 #' * \[4] Koutrouvelis IA (1981). An Iterative Procedure for the Estimation of the Parameters of Stable Laws. Communications in Statistics - Simulation and Computation, 10(1), 17-28. doi:10.1080/03610918108812189
 #' * \[5] Nolan JP (1997). Numerical Calculation of Stable Densities and Distribution Functions. Stochastic Models, 13(4), 759-774. doi:10.1080/15326349708807450
-#' @name libstable4u
 #' @docType package
 #' @keywords package
 #' @useDynLib libstable4u, .registration=TRUE
@@ -61,4 +60,4 @@
 #'
 #' # Using modified maximum likelihood estimator (see [1]):
 #' pars_est_ML2 <- stable_fit_mle2d(rnd, pars_est_K)
-NULL
+"_PACKAGE"
