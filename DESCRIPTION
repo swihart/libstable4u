@@ -1,5 +1,5 @@
 Package: libstable4u
-Version: 1.0.3
+Version: 1.0.4
 Title: Stable Distribution Functions...For You
 Authors@R: c(
   person("Javier", "Royuela del Val", role = c("aut")),
