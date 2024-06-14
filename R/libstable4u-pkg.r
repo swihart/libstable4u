@@ -5,7 +5,7 @@
 #' in a fast and accurate way \[1]. It performs:
 #'
 #' * Fast and accurate evaluation of the probability density function (PDF) and cumulative density function (CDF).
-#' * Fast and accurate evaluation of the quantile function (CDF^{-1}).
+#' * Fast and accurate evaluation of the quantile function (inverse CDF).
 #' * Random numbers generation \[2].
 #' * Skew stable parameter estimation with:
 #'     * McCulloch's method of quantiles \[3].

@@ -19,3 +19,4 @@ changes.txt
 ^cmcre\.r$
 ^cmcre\.Rd$
 memcheck
+.github

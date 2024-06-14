@@ -6,13 +6,14 @@ June 2024
 
 
   * Achim Zeileis improved citation (https://github.com/swihart/libstable4u/pull/4)
+  * modified inverse CDF notation
 
 ## Test environments
 * local OS X install: R version 4.2.2 (2022-10-31)
     * Platform: x86_64-apple-darwin17.0 (64-bit)
     * Running under: macOS Big Sur 11.2.3
-* rhub::rhub_check(platforms=c())
-* 
+* rhub::rhub_check(platforms=c("gcc13","clang18"))
+* devtools::check_win_devel()
 
                      
 ## R CMD check results

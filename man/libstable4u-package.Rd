@@ -13,7 +13,7 @@ in a fast and accurate way [1]. It performs:
 \details{
 \itemize{
 \item Fast and accurate evaluation of the probability density function (PDF) and cumulative density function (CDF).
-\item Fast and accurate evaluation of the quantile function (CDF^{-1}).
+\item Fast and accurate evaluation of the quantile function (inverse CDF).
 \item Random numbers generation [2].
 \item Skew stable parameter estimation with:
 \itemize{
