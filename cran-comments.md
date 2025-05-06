@@ -1,5 +1,28 @@
 # libstable4u R package
 Bruce Swihart  
+May 2025
+
+## Submission
+
+  * Fixed stable_rnd.c source code
+
+## Test environments
+* local OS X install: R version 4.2.2 (2022-10-31)
+    * Platform: x86_64-apple-darwin17.0 (64-bit)
+    * Running under: macOS Big Sur 11.2.3
+* rhub::rhub_check(platforms=c("gcc13","clang18"))
+* devtools::check_win_devel()
+
+                     
+## R CMD check results
+There were no ERRORs or WARNINGs or NOTEs.
+
+
+## Downstream dependencies
+There are currently no downstream dependencies for this package.
+
+# libstable4u R package
+Bruce Swihart  
 June 2024
 
 ## Submission
