@@ -294,7 +294,7 @@ stable_integration_pdf_low(StableDist *dist, double(*integrand)(double,void*),
   #endif
 
   stable_integration(dist,integrand,theta[0],theta[2],
-                             absTOL,relTOL,IT_MAX,
+                             dist->abstol_pdf,relTOL,IT_MAX,
                              &pdf_aux,&err_aux,STABLE_QAG2);
   pdf=fabs(pdf_aux);
   *err=err_aux*err_aux;
@@ -305,7 +305,7 @@ stable_integration_pdf_low(StableDist *dist, double(*integrand)(double,void*),
   #endif
 
   stable_integration(dist,integrand,theta[2],theta[4],
-                             max(pdf*relTOL,absTOL)*0.5,relTOL,IT_MAX,
+                             max(pdf*relTOL,dist->abstol_pdf)*0.5,relTOL,IT_MAX,
                              &pdf_aux,&err_aux,STABLE_QAG2);
   pdf+=fabs(pdf_aux);
   *err+=err_aux*err_aux;
@@ -323,7 +323,7 @@ stable_integration_pdf_low(StableDist *dist, double(*integrand)(double,void*),
   fprintf(FINTEG," %d %d %d %d %d %d\n",
           warnz[0],warnz[1],warnz[2],integ_eval,aux_eval,
           warnz[0]+warnz[1]+warnz[2]+integ_eval+aux_eval);
-  Rprintf("abstols % 1.3e % 1.3e % 1.3e % 1.3e \n",absTOL,max(pdf1*relTOL,absTOL)*0.5,max((pdf2+pdf1)*relTOL,absTOL)*0.25,max((pdf3+pdf2+pdf1)*relTOL,absTOL)*0.25);
+  Rprintf("abstols % 1.3e % 1.3e % 1.3e % 1.3e \n",dist->abstol_pdf,max(pdf1*relTOL,dist->abstol_pdf)*0.5,max((pdf2+pdf1)*relTOL,dist->abstol_pdf)*0.25,max((pdf3+pdf2+pdf1)*relTOL,dist->abstol_pdf)*0.25);
   #endif
 
   return pdf;
@@ -441,7 +441,7 @@ stable_integration_pdf(StableDist *dist, double(*integrand)(double,void*),
   #endif
 
   stable_integration(dist,integrand,theta[1],theta[2],
-                             absTOL,relTOL,IT_MAX,
+                             dist->abstol_pdf,relTOL,IT_MAX,
                              &pdf_aux,&err_aux,METHOD1);
   pdf1=fabs(pdf_aux);
   *err=err_aux*err_aux;
@@ -452,7 +452,7 @@ stable_integration_pdf(StableDist *dist, double(*integrand)(double,void*),
   #endif
 
   stable_integration(dist,integrand,theta[2],theta[3],
-                             max(pdf1*relTOL,absTOL)*0.25,relTOL,IT_MAX,
+                             max(pdf1*relTOL,dist->abstol_pdf)*0.25,relTOL,IT_MAX,
                              &pdf_aux,&err_aux,METHOD2);
   pdf2=fabs(pdf_aux);
   *err+=err_aux*err_aux;
@@ -462,7 +462,7 @@ stable_integration_pdf(StableDist *dist, double(*integrand)(double,void*),
   #endif
 
   stable_integration(dist,integrand,theta[3],theta[4],
-                            max((pdf2+pdf1)*relTOL,absTOL)*0.25,relTOL,IT_MAX,
+                            max((pdf2+pdf1)*relTOL,dist->abstol_pdf)*0.25,relTOL,IT_MAX,
                             &pdf_aux,&err_aux,METHOD3);
   pdf3=fabs(pdf_aux);
   *err+=err_aux*err_aux;
@@ -472,7 +472,7 @@ stable_integration_pdf(StableDist *dist, double(*integrand)(double,void*),
   #endif
 
   stable_integration(dist,integrand,theta[0],theta[1],
-                             max((pdf3+pdf2+pdf1)*relTOL,absTOL)*0.25,relTOL,IT_MAX,
+                             max((pdf3+pdf2+pdf1)*relTOL,dist->abstol_pdf)*0.25,relTOL,IT_MAX,
                              &pdf_aux,&err_aux,STABLE_QAG2);
   *err+=err_aux*err_aux;
 
@@ -581,6 +581,7 @@ stable_pdf_point_ALPHA_1(StableDist *dist, const double x, double *err)
 
   dist->xxipow = (-M_PI*x_*dist->c2_part);
 
+  dist->abstol_pdf = absTOL;
   pdf = stable_integration_pdf(dist,&stable_pdf_g1,&stable_g_aux1,err);
   pdf = dist->c2_part*pdf;
   return pdf/dist->sigma;
@@ -639,6 +640,16 @@ double stable_pdf_point_STABLE(StableDist *dist, const double x, double *err)
      return 0.0;
     }
   
+  /* Near xi the integral is I = |xxi| f(xi) / c2_part, so it shrinks with |xxi| and can fall
+     below the absolute tolerance, which then accepts a coarse estimate (about half of the
+     mass is lost for 1e-5 < |xxi| < ~5e-5). Scale the absolute tolerance to the size of I. */
+  dist->abstol_pdf = absTOL;
+  if (fabs(xxi) < 1.0 && fabs(xxi) * exp(gammaln(1.0+1.0/dist->alpha)) * fabs(cos(dist->theta0))/(M_PI*dist->S) / dist->c2_part < 1e3*absTOL)
+    {
+      double I_exp = fabs(xxi) * exp(gammaln(1.0+1.0/dist->alpha)) *
+                     fabs(cos(dist->theta0))/(M_PI*dist->S) / dist->c2_part;
+      if (relTOL*I_exp < dist->abstol_pdf) dist->abstol_pdf = relTOL*I_exp;
+    }
   pdf = stable_integration_pdf(dist,&stable_pdf_g2,&stable_g_aux2,err);
 
   pdf = dist->c2_part/xxi*pdf;

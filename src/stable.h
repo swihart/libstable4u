@@ -167,6 +167,7 @@ struct StableDistStruct
     double theta0_; /* theta0_ = +-theta0 */
     double beta_;
     double xxipow;  /* (x-xi)^(alpha/(alpha-1))*/
+    double abstol_pdf; /* absolute tolerance used by the pdf integration (scaled to the size of the integral) */
 
     /* gsl integration workspace */
     gsl_integration_workspace * gslworkspace;
